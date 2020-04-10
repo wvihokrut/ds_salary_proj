@@ -6,10 +6,9 @@ Created on Thu Apr  9 17:22:01 2020
 @author: wasurutvihokrut
 """
 import pandas as pd
-
 df = pd.read_csv("glassdoor_jobs.csv")
 
-#salary parsing 
+#salary parsing
 
 df['hourly'] = df['Salary Estimate'].apply(lambda x: 1 if 'per hour' in x.lower() else 0)
 df['employer_provided'] = df['Salary Estimate'].apply(lambda x: 1 if 'employer provided salary:' in x.lower() else 0)
@@ -57,5 +56,8 @@ df.aws_yn.value_counts()
 #excel
 df['excel_yn'] = df['Job Description'].apply(lambda x: 1 if 'excel' in x.lower() else 0)
 df.excel_yn.value_counts()
+
+df.to_csv('salary_data_cleaned.csv', index = False)
+
 
 
